@@ -19,7 +19,7 @@ import java.util.Map;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = { ApplicationTest.class, DataSourceAutoConfiguration.class })
 public class PersonMapperTest {
-	private static final int size = 10;//000000;
+	private static final int size = 10;// 000000;
 	@Autowired
 	private PersonMapper personMapper;
 
@@ -110,13 +110,15 @@ public class PersonMapperTest {
 	@Test
 	public void testInsert4() throws InterruptedException {
 		// 10000000耗时173088,166150
+		// h2还用的是堆内内存，不适合大数据量
 		long start = System.currentTimeMillis();
 		for (int i = 0; i < size; i++) {
 			Person person = personMapper.selectById(i);
 			if (person == null) {
 				person = new Person();
 				person.setId(i);
-				person.setName("LiMing1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890");
+				person.setName(
+						"LiMing1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890");
 				person.setCities(Arrays.asList("Beijing", "Shanghai"));
 
 				// insert
