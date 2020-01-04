@@ -19,7 +19,9 @@ import java.util.Map;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = { ApplicationTest.class, DataSourceAutoConfiguration.class })
 public class PersonMapperTest {
-	private static final int size = 10;// 000000;
+//	10000000
+//	85857
+	private static final int size = 1000000;
 	@Autowired
 	private PersonMapper personMapper;
 
@@ -75,7 +77,7 @@ public class PersonMapperTest {
 	}
 
 	@Test
-	public void testInsert2() {
+	public void testInsert2() throws InterruptedException {
 		long start = System.currentTimeMillis();
 		for (int i = 0; i < size; i++) {
 			Person person = new Person();
@@ -87,10 +89,29 @@ public class PersonMapperTest {
 			personMapper.insert(person);
 		}
 		System.out.println(System.currentTimeMillis() - start);
+		Thread.sleep(Integer.MAX_VALUE);
 	}
-
 	@Test
-	public void testInsert3() {
+	public void testInsert21() throws InterruptedException {
+		//100万去重插入14086
+		long start = System.currentTimeMillis();
+		for (int i = 0; i < size; i++) {
+			Person person = personMapper.selectById(i);
+			if(person==null){
+				person = new Person();
+				person.setId(i);
+				person.setName("LiMing");
+				person.setCities(Arrays.asList("Beijing", "Shanghai"));
+				
+				// insert
+				personMapper.insert(person);
+			}
+		}
+		System.out.println(System.currentTimeMillis() - start);
+		Thread.sleep(Integer.MAX_VALUE);
+	}
+	@Test
+	public void testInsert3() throws InterruptedException {
 		long start = System.currentTimeMillis();
 		for (int i = 0; i < size; i++) {
 			Person person = personMapper.selectById(i);
@@ -105,6 +126,7 @@ public class PersonMapperTest {
 			}
 		}
 		System.out.println(System.currentTimeMillis() - start);
+		Thread.sleep(Integer.MAX_VALUE);
 	}
 
 	@Test
