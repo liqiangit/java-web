@@ -12,7 +12,7 @@ import com.hawkingfoo.model.GroupDetail;
 @Mapper
 public interface GroupDetailMapper {
 	@Select("delete FROM GROUP_DETAIL where ID=#{id}")
-	int deleteByPrimaryKey(String id);
+	int deleteByPrimaryKey(Long id);
 
 	@Insert("INSERT INTO GROUP_DETAIL (ID,CHN,LIBRARY_NAME1,LIBRARY_NAME2,FEATURE_ID,PEOPLE_ID,CATEGORY,X,Y) "
 			+ "VALUES (#{id}, #{chn}, #{libraryName1}, #{libraryName2}, #{featureId}, #{peopleId}, #{category}, #{x}, #{y})")
