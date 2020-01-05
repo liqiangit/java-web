@@ -39,7 +39,6 @@ public class TestController {
 				detail.setChn(chn);
 				detail.setLibraryName1(libraryName1);
 				detail.setLibraryName2(libraryName2);
-				detail.setPeopleId("peopleId" + i);
 				detail.setX(1);
 				detail.setY(1);
 				GroupDetail record = mapper.selectByUK(detail);
@@ -79,7 +78,6 @@ public class TestController {
 				detail.setChn(chn);
 				detail.setLibraryName1(libraryName1);
 				detail.setLibraryName2(libraryName2);
-				detail.setPeopleId("peopleId" + i);
 				detail.setX(1);
 				detail.setY(1);
 				GroupDetail record = mapper.selectByUK(detail);
