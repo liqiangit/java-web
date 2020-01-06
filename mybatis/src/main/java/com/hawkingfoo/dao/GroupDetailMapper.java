@@ -18,14 +18,45 @@ public interface GroupDetailMapper {
 			+ "VALUES (#{id}, #{chn}, #{libraryName1}, #{libraryName2}, #{featureId}, #{peopleId}, #{category}, #{x}, #{y})")
 	int insert(GroupDetail record);
 
-	// int insertSelective(GroupDetail record);
 	@Select("SELECT * FROM GROUP_DETAIL where ID=#{id}")
 	GroupDetail selectByPrimaryKey(String id);
 
+	/**
+	 * 查询特征
+	 * 
+	 * @param detail
+	 * @return
+	 */
 	@Select("SELECT * FROM GROUP_DETAIL where CHN=#{chn} AND LIBRARY_NAME1=#{libraryName1} AND LIBRARY_NAME2=#{libraryName2} AND FEATURE_ID=#{featureId}")
 	GroupDetail selectByUK(GroupDetail detail);
 
-	// int updateByPrimaryKeySelective(GroupDetail record);
+	/**
+	 * 查询一级库明细
+	 * 
+	 * @param detail
+	 * @return
+	 */
+	@Select("SELECT * FROM GROUP_DETAIL where CHN=#{chn} AND LIBRARY_NAME1=#{libraryName1}")
+	GroupDetail selectByLibraryName1(GroupDetail detail);
+
+	/**
+	 * 查询二级库明细
+	 * 
+	 * @param detail
+	 * @return
+	 */
+	@Select("SELECT * FROM GROUP_DETAIL where CHN=#{chn} AND LIBRARY_NAME1=#{libraryName1} AND LIBRARY_NAME2=#{libraryName2}")
+	GroupDetail selectByLibraryName2(GroupDetail detail);
+
+	/**
+	 * 查询人员，返回多个特征
+	 * 
+	 * @param detail
+	 * @return
+	 */
+	@Select("SELECT * FROM GROUP_DETAIL where CHN=#{chn} AND LIBRARY_NAME1=#{libraryName1} AND LIBRARY_NAME2=#{libraryName2} AND PEOPLE_ID=#{peopleId} AND CATEGORY=#{category}")
+	GroupDetail selectByPeople(GroupDetail detail);
+
 	@Update("UPDATE GROUP_DETAIL SET PEOPLE_ID=#{peopleId} , CATEGORY=#{category} , X=#{x} , Y=#{y}  where ID=#{id}")
 	int updateByPrimaryKey(GroupDetail record);
 }

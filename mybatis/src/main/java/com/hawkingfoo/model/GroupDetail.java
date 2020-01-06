@@ -1,6 +1,28 @@
 package com.hawkingfoo.model;
-
+/**
+ * 
+ * <p>
+ * (chn,libraryName1)两个字段组合唯一确定一个分库，
+ * </p>
+ * <p>
+ * (chn,libraryName1,libraryName2)三个字段组合唯一确定一个二级分库，
+ * </p>
+ * <p>
+ * (peopleid,category)唯一确定一个人,
+ * </p>
+ * <p>
+ * featureid唯一确定一个特征
+ * </p>
+ * <p>
+ * (chn,libraryName1,libraryName2,featureid)唯一
+ * </p>
+ * @author liqiang
+ *
+ */
 public class GroupDetail {
+	/**
+	 * 主键
+	 */
     private Long id;
 
     private String chn;
