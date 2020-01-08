@@ -1,4 +1,7 @@
 package com.hawkingfoo.model;
+
+import java.io.Serializable;
+
 /**
  * 
  * <p>
@@ -19,7 +22,12 @@ package com.hawkingfoo.model;
  * @author liqiang
  *
  */
-public class GroupDetail {
+public class GroupDetail implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7227959501560653788L;
+
 	/**
 	 * 主键
 	 */

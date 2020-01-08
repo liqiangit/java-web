@@ -1,5 +1,7 @@
 package com.hawkingfoo.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -37,7 +39,7 @@ public interface GroupDetailMapper {
 	 * @return
 	 */
 	@Select("SELECT * FROM GROUP_DETAIL where CHN=#{chn} AND LIBRARY_NAME1=#{libraryName1}")
-	GroupDetail selectByLibraryName1(GroupDetail detail);
+	List<GroupDetail> selectByLibraryName1(GroupDetail detail);
 
 	/**
 	 * 查询二级库明细
@@ -46,7 +48,7 @@ public interface GroupDetailMapper {
 	 * @return
 	 */
 	@Select("SELECT * FROM GROUP_DETAIL where CHN=#{chn} AND LIBRARY_NAME1=#{libraryName1} AND LIBRARY_NAME2=#{libraryName2}")
-	GroupDetail selectByLibraryName2(GroupDetail detail);
+	List<GroupDetail> selectByLibraryName2(GroupDetail detail);
 
 	/**
 	 * 查询人员，返回多个特征
@@ -55,7 +57,7 @@ public interface GroupDetailMapper {
 	 * @return
 	 */
 	@Select("SELECT * FROM GROUP_DETAIL where CHN=#{chn} AND LIBRARY_NAME1=#{libraryName1} AND LIBRARY_NAME2=#{libraryName2} AND PEOPLE_ID=#{peopleId} AND CATEGORY=#{category}")
-	GroupDetail selectByPeople(GroupDetail detail);
+	List<GroupDetail> selectByPeople(GroupDetail detail);
 
 	@Update("UPDATE GROUP_DETAIL SET PEOPLE_ID=#{peopleId} , CATEGORY=#{category} , X=#{x} , Y=#{y}  where ID=#{id}")
 	int updateByPrimaryKey(GroupDetail record);
